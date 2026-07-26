@@ -2,6 +2,7 @@ let myLeads = ["www.awesomelead.com", "www.epiclead.com", "www.greatlead.com"];
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
+//const buyBtn = document.getElementById("container")
 
 console.log(ulEl)
 
@@ -11,5 +12,11 @@ inputBtn.addEventListener("click", function(){
 });
 
 for (let i = 0; i < myLeads.length; i++) {
-    console.log(myLeads[i])
+    ulEl.innerHTML += "<li>" + myLeads[i] + " </li>"
 }
+
+/*buyBtn.innerHTML = "<button onclick='buy()' >Buy!</button>"
+function buy(){
+    buyBtn.innerHTML += "<p>Thank you for buying!</p>" 
+}
+*/
