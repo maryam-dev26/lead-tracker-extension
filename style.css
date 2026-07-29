@@ -20,3 +20,21 @@ button {
     font-weight: bold;
 
 }
+
+ul {
+    margin-top: 20;
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: #5f9341;
+}
+
+/*
+li a {
+    margin-top: 5;
+    color: #5f9341;
+}
+*/
+
