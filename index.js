@@ -2,16 +2,22 @@ let myLeads = []
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
+// 1. Store the delete button in a deleteBtn variable
+const deleteBtn = document.getElementById("delete-btn")
 
-// Get the leads from the localStorage - PS: JSON.parse()
-// Store it in a variable, leadsFromLocalStorage
-// Log out the variable
+// 2. Listen for double clicks on the delete button
+// 3. When clicked, clear localStorage, myLeads, and the DOM
+deleteBtn.addEventListener("dblclick", function () {
+    console.log("double click")
+    localStorage.clear()
+    myLeads = []
+    renderLeads()
+
+})
 
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 console.log(leadsFromLocalStorage)
 
-// 1. Check if leadsFromLocalStorage is truthy
-// 2. If so, set myLeads to its value and call renderLeads()
 if (leadsFromLocalStorage){
     myLeads = leadsFromLocalStorage
     renderLeads()
@@ -20,7 +26,6 @@ if (leadsFromLocalStorage){
 inputBtn.addEventListener("click", function(){
     myLeads.push(inputEl.value)
     inputEl.value = ""
- // Save the myLeads array to localStorage 
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
     renderLeads()
 
@@ -41,18 +46,3 @@ ulEl.innerHTML = listItems
 }
 
 
-
-// 6 falsy values in javascript
-// false
-// 0
-// ""
-// null -> how you as a developer signalize emptiness
-// undefined -> how JavaScript signalizes emptiness
-// NaN
-
-console.log(  Boolean("")   ) // false
-console.log(  Boolean("0")  ) // true
-console.log(  Boolean(100)  ) // true
-console.log(  Boolean(null) ) // false
-console.log(  Boolean([0])  ) // true
-console.log(  Boolean(-0)   ) // false
