@@ -11,6 +11,15 @@ if (leadsFromLocalStorage){
     render(myLeads)
 }
 
+tabBtn.addEventListener("click", function() {
+//chrome dot tabs, that's a so called API application programming interface.
+    chrome.tabs.query({active: true, currentWindow: true}, function(){
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+        })   
+})
+
 function render(leads) {
 let listItems = ""
 for (let i = 0; i < leads.length; i++) {
@@ -24,7 +33,13 @@ for (let i = 0; i < leads.length; i++) {
 ulEl.innerHTML = listItems
 }
 
+deleteBtn.addEventListener("dblclick", function () {
+    console.log("double click")
+    localStorage.clear()
+    myLeads = []
+    render(myLeads)
 
+})
 
 inputBtn.addEventListener("click", function(){
     myLeads.push(inputEl.value)
@@ -36,54 +51,6 @@ inputBtn.addEventListener("click", function(){
 })
 
 
-//const tabs = [
-    {url: "https://www.linkedin.com/in/per-harald-borgen/"}
-//]
-
-//array of objects
-tabBtn.addEventListener("click", function() {
-    //chrome dot tabs, that's a so called API application programming interface.
-chrome.tabs.query({active: true, currentWindow: true}, function(){
-    //console.log(tabs[0].url)
-    myLeads.push(tabs[0].url)
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    render(myLeads)
-    })   
-})
-
-deleteBtn.addEventListener("dblclick", function () {
-    console.log("double click")
-    localStorage.clear()
-    myLeads = []
-    render(myLeads)
-
-})
 
 
 
-/*
-parameter vs argument
-/.                parameters
-function greetUser(greeting, name) { 
-    welcomeEl.textContent = `${greeting}, ${name} 👋`
-}
-
-//.        arguments
-let hi = "Howdy"
-greetUser(hi, "James")
-
-/number as function parameter
-function add(num1, num2) {
-    return num1 + num2
-}
-add(3, 4)
-
-
-/array as parameter
-
-function getFirst(arr){
-return arr[0]
-}
-let firstCard = getFirst(10,12,21)
-console.log(firstCard)
-*/
