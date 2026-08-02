@@ -11,9 +11,9 @@ if (leadsFromLocalStorage){
     render(myLeads)
 }
 
-tabBtn.addEventListener("click", function(tabs) {
+tabBtn.addEventListener("click", function() {
 //chrome dot tabs, that's a so called API application programming interface.
-    chrome.tabs.query({active: true, currentWindow: true}, function(){
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         myLeads.push(tabs[0].url)
         localStorage.setItem("myLeads", JSON.stringify(myLeads))
         render(myLeads)
